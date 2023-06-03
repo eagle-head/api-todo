@@ -1,0 +1,21 @@
+@startuml
+title Excluir Tarefa
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona a tarefa que deseja excluir
+activate Sistema
+Sistema -> Usuario: Pede confirmação para a exclusão
+
+alt Usuário cancela a exclusão
+    Usuario -> Sistema: Cancela a exclusão
+    Sistema -> Usuario: Mantém a tarefa
+else Usuário confirma a exclusão
+    Usuario -> Sistema: Confirma a exclusão
+    Sistema -> Sistema: Exclui a tarefa
+    Sistema -> Usuario: Informa que a tarefa foi excluída
+end
+
+deactivate Sistema
+@enduml

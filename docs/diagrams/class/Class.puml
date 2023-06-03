@@ -1,0 +1,58 @@
+@startuml
+
+title Task Management System Class Diagram
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum Status {
+  CREATED
+  UPDATED
+  DELETED
+  FAILED
+}
+
+class User {
+  +String firstName
+  +String lastName
+  +String email
+  -String password
+  --
+  +createTask(title: String, description: String, dueDate: Date, priority: Priority)
+  +viewTasks(): List<Task>
+  +updateTask(task: Task, newDetails: TaskDetails)
+  +deleteTask(task: Task)
+  +register(firstName: String, lastName: String, email: String, password: String)
+  +authenticate(email: String, password: String)
+}
+
+class Task {
+  +String title
+  +String description
+  +Date dueDate
+  +Priority priority
+  +Status status
+}
+
+class AuthenticationService {
+  +authenticate(user: User, password: String): Boolean
+  +validateInformation(user: User): Boolean
+}
+
+class TaskManager {
+  +createTask(user: User, taskDetails: TaskDetails): Task
+  +updateTask(user: User, task: Task, newDetails: TaskDetails): Task
+  +deleteTask(user: User, task: Task)
+  +viewTasks(user: User): List<Task>
+  +validateInformation(taskDetails: TaskDetails): Boolean
+}
+
+User "1" *-- "0..*" Task : has
+User --> AuthenticationService : uses
+User --> TaskManager : uses
+TaskManager --> Task : manages
+
+@enduml

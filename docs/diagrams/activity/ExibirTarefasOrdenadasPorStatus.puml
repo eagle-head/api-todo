@@ -1,0 +1,14 @@
+@startuml
+
+title Diagrama de Atividade - Exibir tarefas ordenadas por status
+
+start
+:Usuário seleciona a opção para visualizar as tarefas ordenadas por status;
+if (Usuário tem tarefas) then (yes)
+    :O sistema apresenta uma lista de todas as tarefas do usuário, ordenadas por status;
+else (no)
+    :O sistema informa que não existem tarefas para exibir;
+endif
+stop
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+
+title Diagrama de Atividade - Excluir Tarefa
+
+start
+:Usuário seleciona a tarefa que deseja excluir;
+:O sistema pede confirmação para a exclusão;
+if (Usuário confirma a exclusão?) then (Sim)
+    :O sistema exclui a tarefa;
+    stop
+else (Não)
+    :O sistema mantém a tarefa;
+endif
+stop
+
+@enduml

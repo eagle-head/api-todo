@@ -1,0 +1,22 @@
+@startuml
+title Criar Tarefa
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona opção para criar nova tarefa
+activate Sistema
+Sistema -> Usuario: Apresenta forma para entrada de detalhes da tarefa
+
+Usuario -> Sistema: Entra com título, descrição, data de conclusão prevista e prioridade da tarefa
+Sistema -> Sistema: Valida as informações
+
+alt Informações Inválidas
+    Sistema -> Usuario: Informa sobre os erros e pede por correções
+else Informações Válidas
+    Sistema -> Sistema: Cria a tarefa
+    Sistema -> Usuario: Confirma criação da tarefa
+end
+
+deactivate Sistema
+@enduml

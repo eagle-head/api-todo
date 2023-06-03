@@ -1,0 +1,23 @@
+@startuml
+title Registrar-se no sistema
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona a opção para se registrar
+activate Sistema
+Sistema -> Usuario: Apresenta uma forma para a entrada dos detalhes do usuário
+Usuario -> Sistema: Entra com o nome completo, email e senha
+Sistema -> Sistema: Valida as informações
+
+alt Validação falha
+    Sistema -> Usuario: Informa sobre os erros
+    Usuario -> Sistema: Corrige os erros
+    Sistema -> Sistema: Valida as informações novamente
+else Validação bem-sucedida
+    Sistema -> Sistema: Registra o usuário
+    Sistema -> Usuario: Informa que o usuário foi registrado
+end
+
+deactivate Sistema
+@enduml

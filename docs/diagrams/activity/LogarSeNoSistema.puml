@@ -1,0 +1,15 @@
+@startuml
+
+title Diagrama de Atividade - Logar-se no sistema
+
+start
+:Usuário entra com o email e a senha;
+if (Validação das informações?) then (Sim)
+    :O sistema autentica o usuário;
+    stop
+else (Não)
+    :O sistema informa o usuário sobre os erros e nega a autenticação;
+endif
+stop
+
+@enduml

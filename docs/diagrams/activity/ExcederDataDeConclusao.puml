@@ -1,0 +1,10 @@
+@startuml
+
+title Diagrama de Atividade - Exceder Data de Conclusão
+
+start
+:A data atual ultrapassa a data de conclusão prevista para a tarefa;
+:O sistema atualiza o status da tarefa para "Falhou";
+stop
+
+@enduml

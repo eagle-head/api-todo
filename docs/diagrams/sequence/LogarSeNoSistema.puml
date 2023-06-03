@@ -1,0 +1,19 @@
+@startuml
+title Logar-se no sistema
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Entra com o email e a senha
+activate Sistema
+Sistema -> Sistema: Valida as informações
+
+alt Validação falha
+    Sistema -> Usuario: Informa sobre os erros e nega a autenticação
+else Validação bem-sucedida
+    Sistema -> Sistema: Autentica o usuário
+    Sistema -> Usuario: Informa que o usuário foi autenticado
+end
+
+deactivate Sistema
+@enduml

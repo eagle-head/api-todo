@@ -1,0 +1,15 @@
+@startuml
+
+title Diagrama de Atividade - Visualizar Tarefas
+
+start
+:Usuário seleciona a opção para visualizar as tarefas;
+if (Usuário tem tarefas?) then (Sim)
+    :O sistema apresenta uma lista de todas as tarefas do usuário;
+    stop
+else (Não)
+    :O sistema informa que não existem tarefas para exibir;
+endif
+stop
+
+@enduml

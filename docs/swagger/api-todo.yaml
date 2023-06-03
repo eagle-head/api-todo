@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: Task Management API
+  description: API for managing tasks.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  /tasks/user/{userId}:
+    get:
+      summary: Get tasks by user ID
+      description: Retrieve all tasks associated with a specific user.
+      operationId: getTasksByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+      responses:
+        '200':
+          description: Successful response containing the list of tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      summary: Create a task
+      description: Create a new task associated with a specific user.
+      operationId: createTask
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+      requestBody:
+        description: Task to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Successful response with the created task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /tasks/user/{userId}/{taskId}:
+    put:
+      summary: Update a task
+      description: Update a specific task associated with a specific user.
+      operationId: updateTask
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the task.
+      requestBody:
+        description: Task data to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: Successful response with the updated task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    delete:
+      summary: Delete a task by ID
+      description: Remove a specific task by its unique identifier.
+      operationId: removeTask
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+        - in: path
+          name: taskId
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the task.
+      responses:
+        '204':
+          description: The task was successfully deleted.
+  /users:
+    post:
+      summary: Create a user
+      description: Create a new user.
+      operationId: createUser
+      requestBody:
+        description: User to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: Successful response with the created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+        description:
+          type: string
+        dueDate:
+          type: string
+          format: date-time
+        priority:
+          type: string
+          enum: [ LOW, MEDIUM, HIGH ]
+        status:
+          type: string
+          enum: [ TODO, IN_PROGRESS, COMPLETED, PENDING, ARCHIVED, DELETED ]
+      required:
+        - title
+        - description
+        - dueDate
+        - priority
+    UserCreate:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+      required:
+        - firstName
+        - lastName
+        - email

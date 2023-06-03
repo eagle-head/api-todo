@@ -1,0 +1,45 @@
+@startuml
+title Diagrama de Arquitetura - Sistema de Gerenciamento de Tarefas
+
+actor "Usuário Final" as user
+
+cloud "Internet" {
+    user --> [Balanceador de Carga]: Acessa o sistema
+}
+
+component "Balanceador de Carga"
+
+package "Sistema de Gerenciamento de Tarefas" {
+    [Balanceador de Carga] --> [Firewall]: Passa requisições
+    [Firewall] --> [API Gateway]: Passa requisições seguras
+
+    package "Servidor Aplicação" {
+        [Serviço Autenticação]
+        [Gerenciador Tarefas]
+        [Serviço de Logs]
+        [Serviço de Monitoramento]
+        [API Gateway]
+
+        [Firewall] --> [API Gateway]: Passa requisições seguras
+        [API Gateway] --> [Serviço Autenticação]: Autentica usuário
+        [API Gateway] --> [Gerenciador Tarefas]: Gerencia tarefas
+        [Serviço Autenticação] --> [Gerenciador Tarefas]: Valida acesso
+        [Gerenciador Tarefas] --> [Banco de Dados]: Persiste tarefas
+    }
+
+    package "Infraestrutura" {
+        [Firewall]
+        [Banco de Dados]
+        [Servidor de Logs]
+        [Servidor de Monitoramento]
+    }
+
+    [Serviço de Logs] --> [Servidor de Logs]: Armazena logs
+    [Serviço de Monitoramento] --> [Servidor de Monitoramento]: Monitora performance
+}
+
+database "Banco de Dados" {
+    [Tarefa]
+}
+
+@enduml

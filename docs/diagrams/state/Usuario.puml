@@ -1,0 +1,27 @@
+@startuml
+
+title Diagrama de Maquina de Estados - Usuário
+
+[*] --> NaoRegistrado
+NaoRegistrado : O usuário ainda não se registrou
+NaoRegistrado -down-> Registrado : Se Registra
+
+Registrado : O usuário está registrado
+Registrado -down-> Autenticado : Loga-se
+
+Autenticado : O usuário está autenticado
+Autenticado --> Autenticado : Enviar Requisições
+
+Autenticado --> CriandoTarefa : Criar Tarefa
+CriandoTarefa --> Autenticado : Tarefa Criada
+
+Autenticado --> VisualizandoTarefas : Visualizar Tarefas
+VisualizandoTarefas --> Autenticado : Tarefas Visualizadas
+
+Autenticado --> AtualizandoTarefa : Atualizar Tarefa
+AtualizandoTarefa --> Autenticado : Tarefa Atualizada
+
+Autenticado --> ExcluindoTarefa : Excluir Tarefa
+ExcluindoTarefa --> Autenticado : Tarefa Excluída
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+title Visualizar Tarefas
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona opção para visualizar tarefas
+activate Sistema
+Sistema -> Sistema: Verifica se existem tarefas do usuário
+
+alt Não Existem Tarefas
+    Sistema -> Usuario: Informa que não existem tarefas para exibir
+else Existem Tarefas
+    Sistema -> Usuario: Apresenta uma lista de todas as tarefas do usuário
+end
+
+deactivate Sistema
+@enduml

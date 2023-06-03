@@ -1,0 +1,19 @@
+@startuml
+title Logar-se no sistema com Captcha
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Entra com o email, senha e resolve o captcha
+activate Sistema
+Sistema -> Sistema: Valida as informações e a resposta do captcha
+
+alt Validação ou resposta do captcha falha
+    Sistema -> Usuario: Informa sobre os erros e nega a autenticação
+else Validação e resposta do captcha bem-sucedidas
+    Sistema -> Sistema: Autentica o usuário
+    Sistema -> Usuario: Informa que o usuário foi autenticado
+end
+
+deactivate Sistema
+@enduml

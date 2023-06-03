@@ -1,0 +1,22 @@
+@startuml
+title Atualizar Tarefa
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona a tarefa que deseja atualizar
+activate Sistema
+Sistema -> Usuario: Apresenta os detalhes atuais da tarefa
+
+Usuario -> Sistema: Entra com as alterações desejadas
+Sistema -> Sistema: Valida as alterações
+
+alt A validação das alterações falha
+    Sistema -> Usuario: Informa sobre os erros e pede por correções
+else A validação das alterações passa
+    Sistema -> Sistema: Atualiza a tarefa
+    Sistema -> Usuario: Informa que a tarefa foi atualizada
+end
+
+deactivate Sistema
+@enduml

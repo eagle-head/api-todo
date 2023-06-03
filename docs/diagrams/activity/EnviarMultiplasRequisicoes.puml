@@ -1,0 +1,11 @@
+@startuml
+
+title Diagrama de Atividade - Enviar múltiplas requisições
+
+start
+:Usuário envia várias requisições para o sistema em um curto período de tempo;
+:O sistema limita o número de requisições a uma a cada 3 segundos;
+:O sistema ignora as requisições extras;
+stop
+
+@enduml

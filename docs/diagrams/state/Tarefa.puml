@@ -1,0 +1,18 @@
+@startuml
+[*] --> Criado : Criar Tarefa
+
+Criado --> Atualizado : Atualizar Tarefa
+Atualizado --> Atualizado : Atualizar Tarefa
+
+Criado --> Excluido : Excluir Tarefa
+Atualizado --> Excluido : Excluir Tarefa
+
+Criado --> Falhou : Exceder Data de Conclusão
+Atualizado --> Falhou : Exceder Data de Conclusão
+
+Falhou --> Atualizado : Atualizar Tarefa
+
+Excluido --> [*]
+Falhou --> [*]
+
+@enduml

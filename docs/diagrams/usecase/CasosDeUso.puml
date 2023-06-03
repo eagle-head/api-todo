@@ -1,0 +1,31 @@
+@startuml
+
+title Diagrama de Casos de Uso do Sistema de Gerenciamento de Tarefas
+
+actor Usuario as "Usuário"
+
+(Registrar-se no sistema) as Register
+(Logar-se no sistema) as Login
+(Logar-se no sistema com Captcha) as LoginWithCaptcha
+(Criar Tarefa) as CreateTask
+(Visualizar Tarefas) as ViewTasks
+(Atualizar Tarefa) as UpdateTask
+(Excluir Tarefa) as DeleteTask
+(Enviar múltiplas requisições) as SendMultiRequests
+(Exibir tarefas ordenadas por status) as ViewTasksByStatus
+(Atualizar Status da Tarefa) as UpdateTaskStatus
+(Exceder Data de Conclusão) as ExceedDueDate
+
+Usuario --> Register
+Usuario --> Login
+Usuario --> LoginWithCaptcha
+Usuario --> CreateTask
+Usuario --> ViewTasks
+Usuario --> UpdateTask
+Usuario --> DeleteTask
+Usuario --> SendMultiRequests
+Usuario --> ViewTasksByStatus
+Usuario --> UpdateTaskStatus
+Usuario --> ExceedDueDate
+
+@enduml

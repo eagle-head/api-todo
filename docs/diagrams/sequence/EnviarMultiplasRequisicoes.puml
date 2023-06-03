@@ -1,0 +1,16 @@
+@startuml
+title Enviar múltiplas requisições
+
+actor Usuario as "Usuário"
+participant Sistema
+
+loop Multiples vezes
+    Usuario -> Sistema: Envia uma requisição
+end
+
+activate Sistema
+Sistema -> Sistema: Limita o número de requisições por segundo
+Sistema -> Sistema: Ignora requisições extras
+
+deactivate Sistema
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+title Diagrama de Atividade - Atualizar Tarefa
+
+start
+:Usuário seleciona a tarefa que deseja atualizar;
+:O sistema apresenta os detalhes atuais da tarefa;
+:Usuário entra com as alterações desejadas;
+if (Validação das alterações é bem-sucedida?) then (Sim)
+    :O sistema atualiza a tarefa;
+    stop
+else (Não)
+    :O sistema informa o usuário sobre os erros e pede por correções;
+endif
+stop
+
+@enduml

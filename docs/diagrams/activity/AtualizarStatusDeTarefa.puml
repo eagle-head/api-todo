@@ -1,0 +1,16 @@
+@startuml
+
+title Diagrama de Atividade - Atualizar Status da Tarefa
+
+start
+:Usuário seleciona a tarefa cujo status deseja atualizar;
+:O sistema apresenta os status possíveis;
+:Usuário escolhe um novo status para a tarefa;
+if (Status é válido) then (yes)
+    :O sistema atualiza o status da tarefa;
+else (no)
+    :O sistema informa o erro e solicita uma nova escolha;
+endif
+stop
+
+@enduml

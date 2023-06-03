@@ -1,0 +1,11 @@
+@startuml
+title Exceder Data de Conclusão
+
+participant "Relógio do Sistema" as Clock
+participant Sistema
+
+Clock -> Sistema: Informa que a data atual ultrapassou a data de conclusão da tarefa
+activate Sistema
+Sistema -> Sistema: Atualiza o status da tarefa para "Falhou"
+deactivate Sistema
+@enduml

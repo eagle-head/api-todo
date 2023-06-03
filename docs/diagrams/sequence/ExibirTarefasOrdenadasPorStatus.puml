@@ -1,0 +1,15 @@
+@startuml
+title Exibir tarefas ordenadas por status
+
+actor Usuario as "Usuário"
+participant Sistema
+
+Usuario -> Sistema: Seleciona a opção para visualizar as tarefas ordenadas por status
+activate Sistema
+alt O usuário tem tarefas
+    Sistema -> Usuario: Apresenta uma lista de todas as tarefas do usuário, ordenadas por status
+else O usuário não tem tarefas
+    Sistema -> Usuario: Informa que não existem tarefas para exibir
+end
+deactivate Sistema
+@enduml

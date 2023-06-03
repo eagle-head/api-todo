@@ -1,0 +1,17 @@
+@startuml
+
+title Diagrama de Atividade - Registrar-se no sistema
+
+start
+:Usuário seleciona a opção para se registrar;
+:O sistema apresenta uma forma para a entrada dos detalhes do usuário;
+:Usuário entra com o nome completo, email e senha;
+if (Validação das informações?) then (Sim)
+    :O sistema registra o usuário;
+    stop
+else (Não)
+    :O sistema informa o usuário sobre os erros e pede por correções;
+endif
+stop
+
+@enduml

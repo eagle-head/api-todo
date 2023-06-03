@@ -1,0 +1,18 @@
+@startuml
+[*] --> Deslogado : Sistema Iniciado
+
+Deslogado --> Autenticando : Receber Dados de Login
+Autenticando --> Logado : Autenticação Bem-Sucedida
+Autenticando --> FalhaAutenticacao : Autenticação Falhou
+
+Logado --> Deslogado : Logout
+Logado --> LimitandoRequisicoes : Enviar Múltiplas Requisições
+
+LimitandoRequisicoes --> Logado : Requisições Normalizadas
+
+FalhaAutenticacao --> Deslogado : Tentar Novamente
+
+Deslogado --> [*] : Sistema Encerrado
+Logado --> [*] : Sistema Encerrado
+
+@enduml
