@@ -1,4 +1,4 @@
-package com.kohn.apitodo.dto;
+package com.kohn.apitodo.dtos;
 
 import com.kohn.apitodo.enums.TaskPriority;
 import com.kohn.apitodo.enums.TaskStatus;

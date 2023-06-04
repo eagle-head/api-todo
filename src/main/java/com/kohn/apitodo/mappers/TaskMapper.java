@@ -1,6 +1,6 @@
 package com.kohn.apitodo.mappers;
 
-import com.kohn.apitodo.dto.TaskDto;
+import com.kohn.apitodo.dtos.TaskDto;
 import com.kohn.apitodo.models.Task;
 import org.springframework.stereotype.Component;
 

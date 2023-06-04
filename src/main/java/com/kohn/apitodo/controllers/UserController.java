@@ -1,7 +1,7 @@
 package com.kohn.apitodo.controllers;
 
-import com.kohn.apitodo.dto.UserCreateDto;
-import com.kohn.apitodo.dto.UserDto;
+import com.kohn.apitodo.dtos.UserCreateDto;
+import com.kohn.apitodo.dtos.UserDto;
 import com.kohn.apitodo.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

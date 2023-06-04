@@ -1,6 +1,6 @@
 package com.kohn.apitodo.services;
 
-import com.kohn.apitodo.dto.TaskDto;
+import com.kohn.apitodo.dtos.TaskDto;
 import com.kohn.apitodo.exceptions.TaskNotFoundException;
 import com.kohn.apitodo.exceptions.TaskNotOwnedByUserException;
 import com.kohn.apitodo.exceptions.UserNotFoundException;

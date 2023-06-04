@@ -1,6 +1,6 @@
 package com.kohn.apitodo.controllers;
 
-import com.kohn.apitodo.dto.TaskDto;
+import com.kohn.apitodo.dtos.TaskDto;
 import com.kohn.apitodo.services.TaskService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
