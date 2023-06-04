@@ -123,6 +123,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+    get:
+      summary: Get user by ID
+      description: Retrieve a specific user by their unique identifier.
+      operationId: getUser
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+      responses:
+        '200':
+          description: Successful response with the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
 components:
   schemas:
     Task:

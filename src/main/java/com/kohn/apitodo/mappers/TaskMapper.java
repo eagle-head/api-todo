@@ -6,28 +6,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TaskMapper {
-
     public TaskDto toTaskDto(Task task) {
-        TaskDto taskDto = new TaskDto();
-
-        taskDto.setId(task.getId());
-        taskDto.setTitle(task.getTitle());
-        taskDto.setDescription(task.getDescription());
-        taskDto.setDueDate(task.getDueDate());
-        taskDto.setPriority(task.getPriority());
-        taskDto.setStatus(task.getStatus());
-
-        return taskDto;
+        return new TaskDto(
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getDueDate(),
+                task.getPriority(),
+                task.getStatus());
     }
 
     public Task toTask(TaskDto taskDto) {
         Task task = new Task();
 
-        task.setTitle(taskDto.getTitle());
-        task.setDescription(taskDto.getDescription());
-        task.setDueDate(taskDto.getDueDate());
-        task.setPriority(taskDto.getPriority());
-        task.setStatus(taskDto.getStatus());
+        task.setTitle(taskDto.title());
+        task.setDescription(taskDto.description());
+        task.setDueDate(taskDto.dueDate());
+        task.setPriority(taskDto.priority());
+        task.setStatus(taskDto.status());
 
         return task;
     }

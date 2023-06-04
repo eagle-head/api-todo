@@ -35,7 +35,7 @@ public class TaskService {
 
         User user = getUserById(userId);
 
-        if (taskDto.getDueDate().isBefore(LocalDateTime.now())) {
+        if (taskDto.dueDate().isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Due date should be in the future");
         }
 
@@ -73,13 +73,16 @@ public class TaskService {
             throw new TaskNotOwnedByUserException(taskId, userId);
         }
 
-        task.setTitle(taskDto.getTitle());
-        task.setDescription(taskDto.getDescription());
-        task.setDueDate(taskDto.getDueDate());
-        task.setPriority(taskDto.getPriority());
-        task.setStatus(taskDto.getStatus());
+        Task updatedTask = new Task();
+        updatedTask.setId(task.getId());
+        updatedTask.setTitle(taskDto.title());
+        updatedTask.setDescription(taskDto.description());
+        updatedTask.setDueDate(taskDto.dueDate());
+        updatedTask.setPriority(taskDto.priority());
+        updatedTask.setStatus(taskDto.status());
+        updatedTask.setUser(task.getUser());
 
-        Task updatedTask = taskRepository.save(task);
+        taskRepository.save(updatedTask);
 
         LOGGER.info("Task with ID: {} updated successfully for user with ID: {}", taskId, userId);
 

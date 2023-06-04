@@ -22,12 +22,12 @@ public class UserController {
         return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
-//        // TODO: Call userService to get user and return response
-//        return null;
-//    }
-//
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        UserDto user = userService.findUserById(id);
+        return ResponseEntity.ok(user);
+    }
+
 //    @PutMapping("/{id}")
 //    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
 //        // TODO: Call userService to update user and return response
