@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TaskService.class);
 
     private UserRepository userRepository;
     private final UserMapper userMapper;
@@ -45,27 +45,45 @@ public class UserService {
         return userMapper.toUserDto(savedUser);
     }
 
-    public UserDto findUserById(Long userId) {
-        LOGGER.info("Attempting to find user with ID: {}", userId);
+    public UserDto findUserById(Long id) {
+        LOGGER.info("Attempting to find user with ID: {}", id);
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    LOGGER.error("User with ID: {} not found", userId);
-                    return new UserNotFoundException(userId);
-                });
-
-        LOGGER.info("User retrieved successfully with ID: {}", userId);
+        User user = getUserById(id);
+        LOGGER.info("User retrieved successfully with ID: {}", id);
 
         // Convert User entity to UserDto, which should not include the password
         return userMapper.toUserDto(user);
     }
 
-//    public UserDto updateUser(Long id, UserDto userDto) {
-//        // TODO: Fetch user from database, update fields, save back to database, convert to UserDto and return
-//        return null;
-//    }
-//
+    @Transactional
+    public UserDto updateUser(Long id, UserDto userDto) {
+        LOGGER.info("Attempting to update user with ID: {}", id);
+
+        // Fetch user from database
+        User user = getUserById(id);
+
+        // Update fields
+        user.setFirstName(userDto.firstName());
+        user.setLastName(userDto.lastName());
+        user.setEmail(userDto.email());
+
+        // Save back to database
+        User updatedUser = userRepository.save(user);
+        LOGGER.info("User updated successfully with ID: {}", id);
+
+        // Convert to UserDto and return
+        return userMapper.toUserDto(updatedUser);
+    }
+
 //    public void deleteUser(Long id) {
 //        // TODO: Delete user from database
 //    }
+
+    private User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> {
+                    LOGGER.error("User with ID: {} not found", id);
+                    return new UserNotFoundException(id);
+                });
+    }
 }

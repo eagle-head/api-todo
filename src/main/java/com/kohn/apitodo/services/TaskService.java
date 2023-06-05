@@ -83,7 +83,6 @@ public class TaskService {
         updatedTask.setUser(task.getUser());
 
         taskRepository.save(updatedTask);
-
         LOGGER.info("Task with ID: {} updated successfully for user with ID: {}", taskId, userId);
 
         return taskMapper.toTaskDto(updatedTask);
