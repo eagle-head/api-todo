@@ -141,7 +141,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  /users/{id}:
     put:
       summary: Update a user
       description: Update a specific user by their unique identifier.
@@ -167,6 +166,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete a user
+      description: Delete a specific user by their unique identifier.
+      operationId: deleteUser
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Unique identifier of the user.
+      responses:
+        '204':
+          description: The user was successfully deleted.
 components:
   schemas:
     Task:

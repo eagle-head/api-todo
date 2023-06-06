@@ -75,9 +75,15 @@ public class UserService {
         return userMapper.toUserDto(updatedUser);
     }
 
-//    public void deleteUser(Long id) {
-//        // TODO: Delete user from database
-//    }
+    @Transactional
+    public void deleteUser(Long id) {
+        LOGGER.info("Attempting to delete user with ID: {}", id);
+
+        User user = getUserById(id);
+
+        userRepository.delete(user);
+        LOGGER.info("User deleted successfully with ID: {}", id);
+    }
 
     private User getUserById(Long id) {
         return userRepository.findById(id)
